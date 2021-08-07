@@ -1,0 +1,16 @@
+# 第一步：softmax操作
+# 第二步:  算交叉熵
+input = torch.randn(3,3)
+soft = nn.Softmax(dim=1)
+soft_res = soft(input)
+soft_log = torch.log(soft_res)
+target = torch.tensor([0,2,1])
+print('soft_log', -(soft_log[0][0] + soft_log[1][2] + soft_log[2][1])/3.0)
+
+nLoss = nn.NLLLoss()
+nLoss_res = nLoss(soft_log, target)
+print('nLoss_res', nLoss_res)
+
+entropyLoss = nn.CrossEntropyLoss()
+entropyLoss_res = entropyLoss(input, target)
+print('entropyLoss_res', entropyLoss_res)

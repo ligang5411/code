@@ -1,0 +1,68 @@
+clc
+clear all
+%{
+% 生成矩阵
+A = [1 2 3 4 5 6]
+B = 1:5:9
+C = repmat(B, 3, 2)
+D = ones(2,4)
+two_two = [1 2; 3 4]
+four_four = [1 2 3 4; 5 6 7 8; 9 10 11 12; 13 14 15 16]
+
+% 矩阵运算
+A = [1 2 3 4; 5 6 7 8]
+B = [1 1 2 2; 2 2 1 1]
+C = A+B
+D = A' % A的转置
+E = inv(two_two) % inv 求逆矩阵
+F = A-B
+G = A * B'
+H = A .*B
+I = A / eye(4) % 可理解为A乘以eye(4)这个矩阵的逆
+J = eye(4) ./ four_four
+
+% 矩阵的下标
+A = magic(5)
+B = A(2,3)
+C = A(3,:)
+D = A(:,4)
+[m,n] = find(A > 20)
+
+
+% 基本绘图(二维)
+x = 0:0.01:2*pi
+y = sin(x)
+% figure %建立一个幕布
+plot(x, y)
+title('y=sin(x)')
+xlabel('x')
+ylabel('sin(x)')
+xlim([0 2*pi])
+
+
+
+x = 0:0.01:20
+y1 = 200 * exp(-0.05*x).*sin(x)
+y2 = 0.8 * exp(-0.5*x).*sin(10*x)
+figure
+[AX, H1, H2] = plotyy(x, y1, x, y2, 'plot')
+set(get(AX(1), 'Ylabel'), 'String', 'SlowDecay')
+set(get(AX(2), 'Ylabel'), 'String', 'FastDecay')
+xlabel('Time(\msec)')
+title('Multiple decay rates')
+set(H1, 'LineStyle', '--')
+set(H2, 'LineStyle', ':')
+
+% 基本绘图(三维)
+t = 0: pi/50:10*pi
+plot3(sin(t), cos(t), t)
+xlabel('sit(t)')
+ylabel('cos(t)')
+zlabel('t')
+grid on
+axis square
+%}
+
+[x,y,z] = peaks(30)
+mesh(x,y,z)
+grid
